@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DialogueLine } from '../types';
+import { characterConfig } from '../config/character';
 
 interface GameScreenProps {
   script: DialogueLine[];
@@ -7,20 +8,8 @@ interface GameScreenProps {
   onExit: () => void;
 }
 
-// ==========================================
-// CONFIG: CHARACTER IMAGES
-// Modify these URLs to change the character sprites.
-// You can use local paths (e.g. "/assets/murasame_happy.png") or remote URLs.
-// ==========================================
-const CHARACTER_IMAGES: Record<string, string> = {
-  // Using placehold.co for clear demonstration. Replace with real assets!
-  normal: 'https://pic.imgdd.cc/item/693bdfac824c3b667e8d9b1c.png',
-  happy: 'https://pic.imgdd.cc/item/693bdfac824c3b667e8d9b1d.png',
-  angry: 'https://pic.imgdd.cc/item/693bdf91824c3b667e8d9b00.png',
-  surprised: 'https://pic1.imgdb.cn/item/6938f3e507135a7c195e123c.png',
-  shy: 'https://pic.imgdd.cc/item/693bdf91824c3b667e8d9b02.png',
-  proud: 'https://pic.imgdd.cc/item/693be044824c3b667e8d9b4e.png',
-};
+// Character sprites are configured in config/character.ts
+const CHARACTER_IMAGES = characterConfig.sprites;
 
 export const GameScreen: React.FC<GameScreenProps> = ({ script, title, onExit }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -115,9 +104,9 @@ export const GameScreen: React.FC<GameScreenProps> = ({ script, title, onExit })
            key={jumpKey} // Re-trigger animation on key change
            className={`absolute bottom-0 right-0 md:right-32 h-[90%] z-10 animate-jump-once`}
         >
-          <img 
-            src={getSpriteUrl(currentLine.emotion)} 
-            alt="Murasame" 
+          <img
+            src={getSpriteUrl(currentLine.emotion)}
+            alt={characterConfig.name}
             className="h-full w-auto object-contain drop-shadow-2xl transition-opacity duration-300"
           />
         </div>

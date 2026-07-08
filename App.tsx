@@ -4,6 +4,7 @@ import { UploadScreen } from './components/UploadScreen';
 import { GameScreen } from './components/GameScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { DialogueLine, GameSettings } from './types';
+import { characterConfig } from './config/character';
 
 export enum AppState {
   TITLE,
@@ -38,9 +39,9 @@ const App: React.FC = () => {
       {/* Dynamic Background Layer */}
       <div className="absolute inset-0 z-0">
         {currentState === AppState.GAME ? (
-          <img 
-            src="https://pic.imgdd.cc/item/693be0a2824c3b667e8d9d59.png" 
-            alt="Game Background" 
+          <img
+            src={characterConfig.gameBackground}
+            alt="Game Background"
             className="w-full h-full object-cover transition-opacity duration-1000"
           />
         ) : (

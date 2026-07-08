@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Local config with real API keys / sprites (copy from config/example/)
+/config/*
+!/config/example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

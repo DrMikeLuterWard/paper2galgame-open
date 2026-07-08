@@ -79,8 +79,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ currentSettings,
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg text-sm text-gray-500 mt-4 border border-gray-200">
-            <i className="fas fa-info-circle mr-1"></i> 
-            <strong>Note:</strong> API Key is manually configured in <code>services/geminiService.ts</code>.
+            <i className="fas fa-info-circle mr-1"></i>
+            <strong>Note:</strong> API Key, server and character are configured in <code>config/api.ts</code> and <code>config/character.ts</code>.
           </div>
 
         </div>
