@@ -1,5 +1,6 @@
 import React from 'react';
 import { characterConfig } from '../config/character';
+import { useI18n } from '../i18n';
 
 interface TitleScreenProps {
   onStart: () => void;
@@ -7,6 +8,7 @@ interface TitleScreenProps {
 }
 
 export const TitleScreen: React.FC<TitleScreenProps> = ({ onStart, onSettings }) => {
+  const { t } = useI18n();
   return (
     <div className="flex flex-col items-center justify-center h-full w-full relative">
       {/* Decorative Character (Static Image) */}
@@ -28,18 +30,18 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({ onStart, onSettings })
         
         <div className="bg-white/80 backdrop-blur-sm px-6 py-2 rounded-full border-2 border-gal-pink mb-12 shadow-lg animate-bounce-slow">
            <span className="text-gal-pink-dark font-bold tracking-widest uppercase">
-             <i className="fas fa-heart mr-2"></i> Murasame's Academic Shrine
+             <i className="fas fa-heart mr-2"></i> {t.title.subtitle}
            </span>
         </div>
 
         <div className="flex flex-row space-x-8">
-            <MenuButton onClick={onStart} icon="fa-play" label="开始" subLabel="START GAME" primary />
-            <MenuButton onClick={onSettings} icon="fa-cog" label="设置" subLabel="CONFIG" />
+            <MenuButton onClick={onStart} icon="fa-play" label={t.title.start} subLabel={t.title.startSub} primary />
+            <MenuButton onClick={onSettings} icon="fa-cog" label={t.title.settings} subLabel={t.title.settingsSub} />
         </div>
       </div>
-      
+
       <div className="absolute bottom-4 text-gal-pink-dark/60 text-xs">
-         Powered by Gemini 2.5 • Designed for Research & Fun
+         {t.title.footer}
       </div>
     </div>
   );

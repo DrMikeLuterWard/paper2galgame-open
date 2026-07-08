@@ -1,0 +1,58 @@
+import { Translations } from './index';
+
+// Chinese UI strings (Simplified).
+
+export const zh: Translations = {
+  title: {
+    subtitle: '丛雨的学术神社',
+    start: '开始',
+    startSub: '开始游戏',
+    settings: '设置',
+    settingsSub: '配置',
+    footer: '为科研与乐趣而生',
+  },
+  upload: {
+    back: '返回神社',
+    heading: '召唤论文之灵',
+    subheading: '上传你的论文 PDF，开始仪式。',
+    dropHere: '点击或拖拽 PDF 到此处',
+    maxSize: '文件大小上限：10MB',
+    loadingPrepare: '正在准备灵力...',
+    loadingParse: '正在阅读古籍（解析 PDF）...',
+    loadingThinking: '正在与灵体沟通（{provider}）...',
+    loadingTranscribe: '正在将逻辑转化为魔法...',
+    takeMoment: '这可能需要一点时间...',
+    errorNotPdf: '请上传 PDF 文件！',
+    errorFailed: '召唤讲解失败。请检查 API 设置。',
+  },
+  settings: {
+    title: '系统配置',
+    depth: '解析深度',
+    depthBrief: '简略',
+    depthBriefDesc: '快速总结，约 15 轮',
+    depthDetailed: '详细',
+    depthDetailedDesc: '深入讲解，约 30 轮',
+    depthAcademic: '学术',
+    depthAcademicDesc: '专业分析，约 30 轮',
+    mood: '角色性格',
+    moodTsundere: '傲娇',
+    moodTsundereDesc: '嘴上嫌弃，讲解用心',
+    moodGentle: '温柔',
+    moodGentleDesc: '像大姐姐一样鼓励你',
+    moodStrict: '严厉',
+    moodStrictDesc: '不许偷懒！',
+    language: '界面语言',
+    note: 'API Key、服务器和角色在 config/api.ts 与 config/character.ts 中配置。',
+    cancel: '取消',
+    save: '保存',
+  },
+  game: {
+    note: '重点提示',
+    auto: '自动',
+    log: '记录',
+    hide: '隐藏',
+    exit: '退出',
+    history: '对话历史',
+    end: '本章结束',
+  },
+};

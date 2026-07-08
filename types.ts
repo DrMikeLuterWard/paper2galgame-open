@@ -57,9 +57,16 @@ export interface CharacterConfig {
   /** Background image of the game screen. */
   gameBackground: string;
   /**
+   * Language the character's dialogue must be written in. Free text, e.g.
+   * "English", "Русский", "中文", "Español" — independent of the UI language,
+   * so you can set any language here even if it's not one of the UI options.
+   */
+  outputLanguage: string;
+  /**
    * Persona system prompt. Supports placeholders:
    *   {{personality}} — replaced with text from personalityInstructions
    *   {{detail}}      — replaced with text from detailInstructions
+   *   {{language}}    — replaced with outputLanguage
    */
   systemPrompt: string;
   /** Persona variants for GameSettings.personality. */

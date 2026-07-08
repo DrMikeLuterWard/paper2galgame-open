@@ -140,7 +140,8 @@ export const analyzePaper = async (file: File, settings: GameSettings): Promise<
 
   const prompt = characterConfig.systemPrompt
     .replace('{{personality}}', personalityInstruction)
-    .replace('{{detail}}', detailInstruction);
+    .replace('{{detail}}', detailInstruction)
+    .replace('{{language}}', characterConfig.outputLanguage);
 
  const messages = [
     {

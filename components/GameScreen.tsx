@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DialogueLine } from '../types';
 import { characterConfig } from '../config/character';
+import { useI18n } from '../i18n';
 
 interface GameScreenProps {
   script: DialogueLine[];
@@ -12,6 +13,7 @@ interface GameScreenProps {
 const CHARACTER_IMAGES = characterConfig.sprites;
 
 export const GameScreen: React.FC<GameScreenProps> = ({ script, title, onExit }) => {
+  const { t } = useI18n();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -93,7 +95,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ script, title, onExit })
     }
   };
 
-  if (!currentLine) return <div className="text-white">End of Chapter</div>;
+  if (!currentLine) return <div className="text-white">{t.game.end}</div>;
 
   return (
     <div className="w-full h-full relative" onClick={handleNext}>
@@ -119,17 +121,17 @@ export const GameScreen: React.FC<GameScreenProps> = ({ script, title, onExit })
           {/* Important Note Popup */}
           {currentLine.note && (
              <div className="self-end mb-4 mr-10 max-w-md bg-yellow-50 border-2 border-yellow-200 text-yellow-800 p-3 rounded-lg shadow-lg animate-bounce-slow">
-                <div className="text-xs font-bold uppercase text-yellow-500 mb-1"><i className="fas fa-lightbulb"></i> Important Note</div>
+                <div className="text-xs font-bold uppercase text-yellow-500 mb-1"><i className="fas fa-lightbulb"></i> {t.game.note}</div>
                 <div className="text-sm">{currentLine.note}</div>
              </div>
           )}
 
           {/* Control Bar */}
           <div className="flex justify-end gap-2 mb-2 pointer-events-auto">
-             <ControlButton active={isAuto} onClick={(e) => { e.stopPropagation(); setIsAuto(!isAuto); }} icon="fa-forward" label="Auto" />
-             <ControlButton onClick={(e) => { e.stopPropagation(); setShowLog(true); }} icon="fa-history" label="Log" />
-             <ControlButton onClick={(e) => { e.stopPropagation(); setHideUI(true); }} icon="fa-eye-slash" label="Hide" />
-             <ControlButton onClick={(e) => { e.stopPropagation(); onExit(); }} icon="fa-door-open" label="Exit" />
+             <ControlButton active={isAuto} onClick={(e) => { e.stopPropagation(); setIsAuto(!isAuto); }} icon="fa-forward" label={t.game.auto} />
+             <ControlButton onClick={(e) => { e.stopPropagation(); setShowLog(true); }} icon="fa-history" label={t.game.log} />
+             <ControlButton onClick={(e) => { e.stopPropagation(); setHideUI(true); }} icon="fa-eye-slash" label={t.game.hide} />
+             <ControlButton onClick={(e) => { e.stopPropagation(); onExit(); }} icon="fa-door-open" label={t.game.exit} />
           </div>
 
           {/* Dialogue Box */}
@@ -171,7 +173,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ script, title, onExit })
         <div className="absolute inset-0 z-50 bg-black/70 flex items-center justify-center p-10" onClick={(e) => e.stopPropagation()}>
           <div className="bg-white w-full max-w-4xl h-[80%] rounded-xl overflow-hidden flex flex-col shadow-2xl">
             <div className="bg-gal-pink-dark p-4 flex justify-between items-center text-white">
-              <h3 className="font-bold text-xl"><i className="fas fa-history mr-2"></i> Dialogue History</h3>
+              <h3 className="font-bold text-xl"><i className="fas fa-history mr-2"></i> {t.game.history}</h3>
               <button onClick={() => setShowLog(false)} className="hover:text-gray-200"><i className="fas fa-times text-2xl"></i></button>
             </div>
             <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-pink-50">

@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { analyzePaper } from '../services/llmService';
 import { DialogueLine, GameSettings } from '../types';
 import { apiConfig } from '../config/api';
+import { useI18n } from '../i18n';
 
 interface UploadScreenProps {
   onScriptGenerated: (script: DialogueLine[], title: string) => void;
@@ -10,33 +11,37 @@ interface UploadScreenProps {
 }
 
 export const UploadScreen: React.FC<UploadScreenProps> = ({ onScriptGenerated, onBack, settings }) => {
+  const { t } = useI18n();
   const [isDragging, setIsDragging] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [loadingText, setLoadingText] = useState("Preparing mana...");
+  const [loadingText, setLoadingText] = useState(t.upload.loadingPrepare);
 
   const processFile = async (file: File) => {
     if (file.type !== 'application/pdf') {
-      setError("Please upload a PDF file, 主殿 (Master)!");
+      setError(t.upload.errorNotPdf);
       return;
     }
 
     setIsProcessing(true);
     setError(null);
-    setLoadingText("Reading the ancient texts (Parsing PDF)...");
+    setLoadingText(t.upload.loadingParse);
 
     try {
       // Simulate phases of "thinking" for better UX
-      const thinkingTimer = setTimeout(() => setLoadingText(`Consulting the spirits (${apiConfig.provider})...`), 2000);
-      
+      const thinkingTimer = setTimeout(
+        () => setLoadingText(t.upload.loadingThinking.replace('{provider}', apiConfig.provider)),
+        2000
+      );
+
       const result = await analyzePaper(file, settings);
-      
+
       clearTimeout(thinkingTimer);
-      setLoadingText("Transcribing logic to magic...");
-      
+      setLoadingText(t.upload.loadingTranscribe);
+
       onScriptGenerated(result.script, result.title);
     } catch (err) {
-      setError("Failed to summon the explanation. Is the API Key valid?");
+      setError(t.upload.errorFailed);
       setIsProcessing(false);
     }
   };
@@ -71,18 +76,18 @@ export const UploadScreen: React.FC<UploadScreenProps> = ({ onScriptGenerated, o
         onClick={onBack}
         className="absolute top-8 left-8 text-gal-pink-dark hover:text-gal-pink font-bold flex items-center gap-2 transition-colors"
       >
-        <i className="fas fa-arrow-left"></i> Return to Shrine
+        <i className="fas fa-arrow-left"></i> {t.upload.back}
       </button>
 
       <div className="max-w-xl w-full">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">Summon Paper Spirit</h2>
-        <p className="text-center text-gray-500 mb-8">Upload your research PDF to begin the ritual.</p>
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">{t.upload.heading}</h2>
+        <p className="text-center text-gray-500 mb-8">{t.upload.subheading}</p>
 
         {isProcessing ? (
           <div className="flex flex-col items-center justify-center py-12 bg-white rounded-3xl shadow-xl border-4 border-gal-pink/30">
              <div className="w-16 h-16 border-4 border-gal-pink border-t-transparent rounded-full animate-spin mb-4"></div>
              <p className="text-xl text-gal-pink-dark font-serif animate-pulse">{loadingText}</p>
-             <p className="text-sm text-gray-400 mt-2">This may take a moment...</p>
+             <p className="text-sm text-gray-400 mt-2">{t.upload.takeMoment}</p>
           </div>
         ) : (
           <div 
@@ -113,10 +118,10 @@ export const UploadScreen: React.FC<UploadScreenProps> = ({ onScriptGenerated, o
             </div>
             
             <p className="text-xl font-bold text-gray-700 mb-2">
-              Click or Drag PDF Here
+              {t.upload.dropHere}
             </p>
             <p className="text-sm text-gray-400">
-              Maximum file size: 10MB
+              {t.upload.maxSize}
             </p>
             
             {error && (

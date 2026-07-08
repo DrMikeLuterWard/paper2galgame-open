@@ -7,6 +7,8 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6)
 ![Vite](https://img.shields.io/badge/Vite-6.2-646CFF)
 
+**English** · [Русский](README.ru.md) · [中文](README.zh.md)
+
 ## 📖 Overview
 
 Paper2Galgame is a web app that uses an LLM to turn a dry research paper into a
@@ -22,6 +24,7 @@ your call.
 - 📊 **Adjustable depth** — brief / detailed / academic
 - 💬 **Full VN experience** — typewriter effect, auto-play, dialogue history
 - 🎨 **Polished UI** — dynamic sprites with emotion switching
+- 🌍 **Localized** — English / Русский / 中文 interface, with a separately configurable reply language
 - ⚙️ **Config, not hardcode** — API keys, samplers and character are all in `config/`, kept out of git
 
 ## 🚀 Quick start
@@ -92,6 +95,7 @@ paper2galgame/
 │   └── SettingsScreen.tsx  # Settings screen
 ├── services/
 │   └── llmService.ts       # LLM API service layer
+├── i18n/                 # UI translations (en / ru / zh) + language context
 └── config/               # Local settings (git-ignored)
     └── example/            # Templates, committed to git
 ```
@@ -120,7 +124,9 @@ persona (language, tone, whole character) without touching any code.
 
 ## 🎨 Custom sprites
 
-Edit the `sprites` object in [`config/character.ts`](config/example/character.ts):
+The example config ships with the original author's sprite URLs, so the app works
+out of the box. Swap them for your own when ready — edit the `sprites` object in
+[`config/character.ts`](config/example/character.ts):
 
 ```typescript
 sprites: {
@@ -130,6 +136,16 @@ sprites: {
   // ...
 },
 ```
+
+## 🌍 Localization
+
+The interface ships in **English, Russian and Chinese**. Switch it under
+**Settings → Interface Language**; the choice is saved in your browser.
+
+The language the character *replies* in is **separate** from the UI language. Set
+`outputLanguage` in [`config/character.ts`](config/example/character.ts) to any
+language you like — even one that isn't a UI option (e.g. `'Español'`). It's
+injected into the persona prompt through the `{{language}}` placeholder.
 
 ## 🎚️ Sampler parameters
 
@@ -162,7 +178,7 @@ block entirely.
 
 ## 🦦 About this fork
 
-So, my ADHD ass was trying to figure out how to study for exams, and I stumbled across `paper2galgame-open`. Naturally, instead of actually studying, I ended up building out this thing that *might* help with studying (I know, peak rationality!). 
+So, my ADHD ass was trying to figure out how to study for exams, and I stumbled across `paper2galgame-open`. Naturally, instead of actually studying, I ended up building out this thing that *might* help with studying instead real studying (I know, peak rationality!). 
 
 What’s even more ironic is that I don’t even know TypeScript — I just decided to vibe-code whatever I needed. Who knows, maybe someone else will find it useful too!
 

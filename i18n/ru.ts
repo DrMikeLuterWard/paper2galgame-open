@@ -1,0 +1,58 @@
+import { Translations } from './index';
+
+// Russian UI strings.
+
+export const ru: Translations = {
+  title: {
+    subtitle: 'Академический храм Мурасамэ',
+    start: 'Начать',
+    startSub: 'СТАРТ',
+    settings: 'Настройки',
+    settingsSub: 'КОНФИГ',
+    footer: 'Создано для учёбы и веселья',
+  },
+  upload: {
+    back: 'Вернуться в храм',
+    heading: 'Призвать дух статьи',
+    subheading: 'Загрузите PDF со статьёй, чтобы начать ритуал.',
+    dropHere: 'Нажмите или перетащите PDF сюда',
+    maxSize: 'Максимальный размер файла: 10 МБ',
+    loadingPrepare: 'Готовим ману...',
+    loadingParse: 'Читаем древние тексты (разбор PDF)...',
+    loadingThinking: 'Совещаемся с духами ({provider})...',
+    loadingTranscribe: 'Превращаем логику в магию...',
+    takeMoment: 'Это может занять пару мгновений...',
+    errorNotPdf: 'Пожалуйста, загрузите PDF-файл!',
+    errorFailed: 'Не удалось вызвать объяснение. Проверьте настройки API.',
+  },
+  settings: {
+    title: 'Настройки системы',
+    depth: 'Глубина разбора',
+    depthBrief: 'Кратко',
+    depthBriefDesc: 'Быстрое резюме, ~15 реплик',
+    depthDetailed: 'Подробно',
+    depthDetailedDesc: 'Глубокий разбор, ~30 реплик',
+    depthAcademic: 'Академично',
+    depthAcademicDesc: 'Научный анализ, ~30 реплик',
+    mood: 'Характер персонажа',
+    moodTsundere: 'Цундэрэ',
+    moodTsundereDesc: 'Ворчит, но объясняет заботливо',
+    moodGentle: 'Ласковый',
+    moodGentleDesc: 'Поддерживает, как старшая сестра',
+    moodStrict: 'Строгий',
+    moodStrictDesc: 'Никаких поблажек!',
+    language: 'Язык интерфейса',
+    note: 'Ключ API, сервер и персонаж настраиваются в config/api.ts и config/character.ts.',
+    cancel: 'Отмена',
+    save: 'Сохранить',
+  },
+  game: {
+    note: 'Важное примечание',
+    auto: 'Авто',
+    log: 'Лог',
+    hide: 'Скрыть',
+    exit: 'Выход',
+    history: 'История диалога',
+    end: 'Конец главы',
+  },
+};
